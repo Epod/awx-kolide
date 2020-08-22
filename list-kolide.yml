@@ -1,0 +1,10 @@
+- name: List Online Kolide Portals
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    
+    - name: Find Kolide Instances
+      command: ls -l /opt/kolide
+      register: folders
+    - debug: var=folders.stdout_lines
