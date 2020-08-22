@@ -1,7 +1,14 @@
 - name: Hello World Sample
   hosts: all
+  vars_prompt:
+  - name: codename
+    prompt: "Pleasse enter a UNIQUE codename."
+    
   tasks:
-    - name: Hello Message
+    - name: Create Workspace
       debug:
-        msg: "Hello World!"
+        msg: "Creating workspace in /root/{{ codename }}"
+      file:
+        path: /root/{{ codename }}
+        state: directory
 
