@@ -10,4 +10,7 @@
         state : absent
         remove_volumes: yes
 
-
+    - name: Remove All Customer Data
+      shell: rm -rf /opt/kolide/{{ codename }}
+      args:
+        warn: no
