@@ -6,8 +6,6 @@
     
   tasks:
     - name: Create Workspace
-      debug:
-        msg: "Creating workspace in /root/{{ codename }}"
       file:
         path: /root/{{ codename }}
         state: directory
