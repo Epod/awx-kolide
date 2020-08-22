@@ -1,7 +1,6 @@
 - name: Hello World Sample
   hosts: all
   gather_facts: no
-  warn: false
   vars:
     allowed_ports:
       - 8000
