@@ -16,7 +16,7 @@
       - 8010
     
   tasks:
-    - name: Gather occupied tcp v4 ports
+    - name: Gather occupied ports
       shell: netstat -nlt | grep -oP '(?<=:::)(\d+)'
       register: used_ports
       
@@ -25,11 +25,14 @@
         bind_port: "{{ allowed_ports | difference(used_ports.stdout_lines | map('int') | list) | first | default(0) }}"
       failed_when: bind_port | int == 0
       
+    - name: Show bind port
+      debug: var=bind_port
+      
     - name: Download Kolide Scripts
       git:
         repo: 'https://github.com/Epod/awx-kolide.git'
         dest: /opt//kolide/{{ codename }}
         
-    - name: Show bind port
-      debug: var=bind_port
+    - name: Configure Port
+      shell: sed 's/443/{{ bind_port }}/g' /opt//kolide/{{ codename }}/docker-compose.yml
 
