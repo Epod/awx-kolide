@@ -39,16 +39,15 @@
         warn: no
         
     - name: Configure Kolide
-      shell: bash /opt/kolide/{{ codename }}/setup.sh
-      args:
-        warn: no
+      script: /opt/kolide/{{ codename }}/setup.sh
+
         
     
     - name: Bringup Kolide
       docker_compose:
         project_src: /opt/kolide/{{ codename }}
         files:
-          - docker_compose.yml
+          - docker-compose.yml
         
 
 
