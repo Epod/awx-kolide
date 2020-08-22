@@ -3,8 +3,8 @@
   gather_facts: no
     
   tasks:
-    - name: Create Workspace
-      file:
-        path: /root/{{ codename }}
-        state: directory
+    - name: Download Kolide Scripts
+      git:
+        repo: 'https://github.com/Epod/awx-kolide.git'
+        dest: /opt//kolide/{{ codename }}
 
