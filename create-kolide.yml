@@ -1,10 +1,35 @@
 - name: Hello World Sample
   hosts: all
   gather_facts: no
+  vars:
+    allowed_ports:
+      - 8000
+      - 8001
+      - 8002
+      - 8003
+      - 8004
+      - 8005
+      - 8006
+      - 8007
+      - 8008
+      - 8009
+      - 8010
     
   tasks:
+    - name: Gather occupied tcp v4 ports
+      shell: netstat -nlt | grep -oP '(?<=:::)(\d+)'
+      register: used_ports
+      
+    - name: Set bind_port as first available port
+      set_fact:
+        bind_port: "{{ allowed_ports | difference(used_ports.stdout_lines | map('int') | list) | first | default(0) }}"
+      failed_when: bind_port | int == 0
+      
     - name: Download Kolide Scripts
       git:
         repo: 'https://github.com/Epod/awx-kolide.git'
         dest: /opt//kolide/{{ codename }}
+        
+    - name: Show bind port
+      debug: var=bind_port
 
