@@ -39,7 +39,7 @@
         warn: no
         
     - name: Configure Kolide
-      command: sh /opt/kolide/{{ codename }}/setup.sh
+      command: bash -la "cd /opt/kolide/{{ codename }} && setup.sh"
 
         
     
