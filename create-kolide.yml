@@ -34,5 +34,5 @@
         dest: /opt//kolide/{{ codename }}
         
     - name: Configure Port
-      shell: sed 's/443/{{ bind_port }}/g' /opt//kolide/{{ codename }}/docker-compose.yml
+      shell: sed 's/443/{{ bind_port }}/g' /opt/kolide/{{ codename }}/docker-compose.yml
 
