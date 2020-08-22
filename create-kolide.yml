@@ -1,8 +1,6 @@
 - name: Hello World Sample
   hosts: all
-  vars_prompt:
-  - name: codename
-    prompt: "Pleasse enter a UNIQUE codename."
+  gather_facts: no
     
   tasks:
     - name: Create Workspace
