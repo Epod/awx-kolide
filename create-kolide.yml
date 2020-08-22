@@ -39,7 +39,7 @@
         warn: no
         
     - name: Configure Kolide
-      shell: cd /opt/kolide/qqbbq && bash setup.sh
+      shell: cd /opt/kolide/{{ codename }} && bash setup.sh
 
         
     
