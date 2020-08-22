@@ -35,9 +35,20 @@
         
     - name: Configure Port
       shell: sed -i 's/443/{{ bind_port }}/g' /opt/kolide/{{ codename }}/docker-compose.yml
-      register: result
       args:
         warn: no
+        
+    - name: Configure Kolide
+      shell: bash /opt/kolide/{{ codename }}/setup.sh
+      args:
+        warn: no
+        
     
-    - debug: var=result
+    - name: Bringup Kolide
+      docker_compose:
+        project_src: /opt/kolide/{{ codename }}
+        files:
+          - docker_compose.yml
+        
+
 
