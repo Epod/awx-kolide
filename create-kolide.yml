@@ -33,15 +33,15 @@
         repo: 'https://github.com/Epod/awx-kolide.git'
         dest: /opt//kolide/{{ codename }}
         
+        
     - name: Configure Port
-      shell: sed -i 's/443/{{ bind_port }}/g' /opt/kolide/{{ codename }}/docker-compose.yml
+      shell: sed -i 's/443:/{{ bind_port }}:/g' /opt/kolide/{{ codename }}/docker-compose.yml
       args:
         warn: no
         
     - name: Configure Kolide
       shell: cd /opt/kolide/{{ codename }} && bash setup.sh
-
-        
+   
     
     - name: Bringup Kolide
       docker_compose:
