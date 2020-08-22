@@ -1,4 +1,4 @@
-- name: Hello World Sample
+- name: Create Kolide Fleet
   hosts: all
   gather_facts: no
   vars:

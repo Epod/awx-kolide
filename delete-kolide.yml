@@ -1,0 +1,13 @@
+- name: Delete Kolide Fleet
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    
+    - name: Shutting Down Kolide Instance
+      docker_compose:
+        project_src: /opt/kolide/{{ codename }}
+        state : absent
+        remove_volumes: yes
+
+
